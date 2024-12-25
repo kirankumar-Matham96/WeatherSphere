@@ -14,6 +14,7 @@ import {
 
 const Chart = ({ weatherData }) => {
   const { data, units } = weatherData;
+
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
@@ -48,7 +49,11 @@ const Chart = ({ weatherData }) => {
   };
 
   return (
-    <ResponsiveContainer width={"100%"} height={500}>
+    <ResponsiveContainer
+      width={"95%"}
+      height={410}
+      className="mb-6 border-2 border-solid border-gray-500"
+    >
       <LineChart data={data} margin={{ top: 20 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="time" padding={{ left: 30, right: 30 }}>

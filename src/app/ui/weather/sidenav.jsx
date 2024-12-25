@@ -1,16 +1,32 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const Sidenav = () => {
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
-  const [startDate, setStartDate] = useState(0);
-  const [endDate, setEndDate] = useState(0);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const [latitude, setLatitude] = useState(52.52);
+  const [longitude, setLongitude] = useState(13.41);
+  const [startDate, setStartDate] = useState("2024-12-09");
+  const [endDate, setEndDate] = useState("2024-12-23");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // change URL params
+    const params = new URLSearchParams(searchParams);
+
+    if (latitude && startDate && longitude && endDate) {
+      params.set("latitude", latitude);
+      params.set("longitude", longitude);
+      params.set("start_date", startDate);
+      params.set("end_date", endDate);
+    } else {
+      alert("The data is required");
+    }
+
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -20,25 +36,25 @@ const Sidenav = () => {
         onSubmit={handleSubmit}
       >
         <input
-          className="rounded-sm bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
           type="text"
           value={latitude}
           onChange={(e) => setLatitude(e.target.value)}
         />
         <input
-          className="rounded-sm bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
           type="text"
           value={longitude}
           onChange={(e) => setLongitude(e.target.value)}
         />
         <input
-          className="rounded-sm bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
           type="text"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         />
         <input
-          className="rounded-sm bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
           type="text"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
