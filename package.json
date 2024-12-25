@@ -2,6 +2,7 @@
   "name": "weather-sphere-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -12,6 +13,7 @@
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "next": "15.1.2",
+    "openmeteo": "^1.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
