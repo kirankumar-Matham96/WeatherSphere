@@ -10,7 +10,6 @@ const Sidenav = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(latitude, longitude, startDate, endDate);
     // change URL params
   };
 

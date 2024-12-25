@@ -5,7 +5,7 @@ const Layout = ({ children }) => (
     <nav className="w-1/4 h-full">
       <Sidenav />
     </nav>
-    <section>{children}</section>
+    <section className="w-3/4 h-full">{children}</section>
   </main>
 );
 export default Layout;
