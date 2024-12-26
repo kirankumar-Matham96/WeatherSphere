@@ -58,6 +58,8 @@ const Sidenav = () => {
     if (!validationResult.success) {
       setErrors(validationResult.error.format());
       return;
+    } else {
+      setErrors(null);
     }
 
     const params = new URLSearchParams(searchParams);
@@ -95,44 +97,63 @@ const Sidenav = () => {
 
   return (
     <div className="bg-gray-400 w-full h-full flex flex-col p-2 ">
+      <h1 className="text-4xl font-semibold drop-shadow-2xl text-black">
+        Dashboard
+      </h1>
       <form
         className=" flex flex-col justify-start items-center w-full pt-32"
         onSubmit={handleSubmit}
       >
-        <input
-          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
-          type="text"
-          required
-          value={latitude}
-          placeholder="Latitude"
-          onChange={(e) => setLatitude(e.target.value)}
-        />
-        <input
-          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
-          required
-          type="text"
-          placeholder="Longitude"
-          value={longitude}
-          onChange={(e) => setLongitude(e.target.value)}
-        />
-        <input
-          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
-          required
-          type="date"
-          min={"2022-06-12"}
-          max={startDateMax}
-          value={startDate}
-          onChange={(e) => handleStartDate(e.target.value)}
-        />
-        <input
-          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
-          required
-          type="date"
-          min={endDateMin}
-          max={formatDate(new Date())}
-          value={endDate}
-          onChange={(e) => handleEndDate(e.target.value)}
-        />
+        <label htmlFor="latitude" className="w-full text-black">
+          Latitude:
+          <input
+            className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
+            type="text"
+            required
+            id="latitude"
+            value={latitude}
+            placeholder="Latitude"
+            onChange={(e) => setLatitude(e.target.value)}
+          />
+        </label>
+        <label htmlFor="longitude" className="w-full text-black">
+          Longitude:
+          <input
+            className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
+            required
+            id="longitude"
+            type="text"
+            placeholder="Longitude"
+            value={longitude}
+            onChange={(e) => setLongitude(e.target.value)}
+          />
+        </label>
+        <label htmlFor="startDate" className="w-full text-black">
+          Start Date:
+          <input
+            className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
+            required
+            id="startDate"
+            type="date"
+            min={"2022-06-12"}
+            max={startDateMax}
+            value={startDate}
+            onChange={(e) => handleStartDate(e.target.value)}
+          />
+        </label>
+        <label htmlFor="endDate" className="w-full text-black">
+          End Date:
+          <input
+            className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
+            required
+            id="endDate"
+            type="date"
+            min={endDateMin}
+            max={formatDate(new Date())}
+            value={endDate}
+            onChange={(e) => handleEndDate(e.target.value)}
+          />
+        </label>
         <div className="w-full flex justify-between mt-2">
           <button
             className="text-xl border-0 rounded-md p-3 bg-orange-600 text-green-50"

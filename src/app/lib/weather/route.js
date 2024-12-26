@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const cache = {};
+
 export const fetchWeatherData = async (
   latitude,
   longitude,
@@ -17,6 +19,14 @@ export const fetchWeatherData = async (
       timezone: "auto",
     };
 
+    // caching the data
+    const key = `${latitude}-${longitude}-${startDate}-${endDate}-`;
+
+    if (cache[key]) {
+      return cache[key];
+    }
+
+    // if new request
     const resp = await axios.get(
       "https://archive-api.open-meteo.com/v1/archive",
       { params }
@@ -36,9 +46,23 @@ export const fetchWeatherData = async (
     const units = resp.data.daily_units;
 
     const report = { data, units };
+    cache[key] = report;
+
     return report;
   } catch (error) {
-    console.log(error);
-    return error.message;
+    console.error(error);
+    if (error.response) {
+      throw new Error(
+        `Weather data could not be retrieved. Server responded with status: ${error.response.status}`
+      );
+    } else if (error.request) {
+      throw new Error(
+        `Weather data could not be retrieved. No response from server! Try again later.`
+      );
+    } else {
+      throw new Error(
+        `Weather data could not be retrieved. Something went wrong!`
+      );
+    }
   }
 };
