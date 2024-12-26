@@ -22,24 +22,24 @@ const Chart = ({ weatherData }) => {
           <p className="label text-[red]">Date: {label}</p>
           <p className="desc text-[#003f5c]">
             Max Apparent Temperature (2m): {payload[0].value}{" "}
-            {units.apparent_temperature_max}
+            {units?.apparent_temperature_max}
           </p>
           <p className="desc text-[#ff6361]">
             Min Apparent Temperature (2m): {payload[1].value}{" "}
-            {units.apparent_temperature_min}
+            {units?.apparent_temperature_min}
           </p>
           <p className="desc text-[#58508d]">
             Mean Apparent Temperature (2m): {payload[2].value}{" "}
-            {units.apparent_temperature_mean}
+            {units?.apparent_temperature_mean}
           </p>
           <p className="desc text-[#ff8c00]">
-            Max Temperature: {payload[3].value} {units.temperature_2m_max}
+            Max Temperature: {payload[3].value} {units?.temperature_2m_max}
           </p>
           <p className="desc text-[#bc5090]">
-            Min Temperature: {payload[4].value} {units.temperature_2m_min}
+            Min Temperature: {payload[4].value} {units?.temperature_2m_min}
           </p>
           <p className="desc text-[#395c1d]">
-            Mean Temperature: {payload[5].value} {units.temperature_2m_mean}
+            Mean Temperature: {payload[5].value} {units?.temperature_2m_mean}
           </p>
         </div>
       );

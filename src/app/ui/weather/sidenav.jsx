@@ -4,6 +4,14 @@ import { useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const Sidenav = () => {
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -12,6 +20,8 @@ const Sidenav = () => {
   const [longitude, setLongitude] = useState(13.41);
   const [startDate, setStartDate] = useState("2024-12-09");
   const [endDate, setEndDate] = useState("2024-12-23");
+  const [startDateMax, setStartDateMax] = useState(formatDate(new Date()));
+  const [endDateMin, setEndDateMin] = useState("2024-12-09");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +39,25 @@ const Sidenav = () => {
     replace(`${pathname}?${params.toString()}`);
   };
 
+  const handleStartDate = (date) => {
+    setStartDate(date);
+    setEndDateMin(date);
+  };
+
+  const handleEndDate = (date) => {
+    setEndDate(date);
+    setStartDateMax(date);
+  };
+
+  const clearData = () => {
+    setLatitude("");
+    setLongitude("");
+    setStartDate("");
+    setEndDate("");
+    setStartDateMax(formatDate(new Date()));
+    setEndDateMin("2022-06-12");
+  };
+
   return (
     <div className="bg-gray-400 w-full h-full flex ">
       <form
@@ -40,29 +69,39 @@ const Sidenav = () => {
           type="text"
           required
           value={latitude}
+          placeholder="Latitude"
           onChange={(e) => setLatitude(e.target.value)}
         />
         <input
           className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
           required
           type="text"
+          placeholder="Longitude"
           value={longitude}
           onChange={(e) => setLongitude(e.target.value)}
         />
         <input
-          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
           required
-          type="text"
+          type="date"
+          min={"2022-06-12"}
+          max={startDateMax}
           value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+          onChange={(e) => handleStartDate(e.target.value)}
         />
         <input
-          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2 w-full"
           required
-          type="text"
+          type="date"
+          min={endDateMin}
+          max={formatDate(new Date())}
           value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
+          onChange={(e) => handleEndDate(e.target.value)}
         />
+
+        <button type="button" onClick={clearData}>
+          Clear
+        </button>
         <button type="submit">Get Data</button>
       </form>
     </div>
