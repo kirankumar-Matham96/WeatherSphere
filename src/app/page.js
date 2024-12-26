@@ -1,10 +1,22 @@
-// "use client";
+import Link from "next/link";
+import Spline from "@splinetool/react-spline/next";
 
 export default function Home() {
   return (
-    <div className="container mx-auto max-auto bg-blue-200 h-screen">
-      <section className="max-auto bg-red-100 hero">
-        <h1>Home</h1>
+    <div className="mx-auto h-screen bg-gray-950">
+      <section className="h-full flex justify-evenly text-center text-gray-50 pt-20">
+        <div className="pt-[12rem]">
+          <h1 className="text-6xl mb-1">Weather Sphere</h1>
+          <h2 className="text-3xl mb-1">Find the forecast at your place</h2>
+          <Link href={"/weather"}>
+            <button className="mt-20 p-4 bg-gray-700 rounded-md text-xl">
+              Let's Start
+            </button>
+          </Link>
+        </div>
+        <div className="w-1/2 h-full">
+          <Spline scene="https://prod.spline.design/lsfH3y-A3bxST9jO/scene.splinecode" />
+        </div>
       </section>
     </div>
   );

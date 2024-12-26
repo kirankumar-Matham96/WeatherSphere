@@ -97,7 +97,7 @@ const Sidenav = () => {
 
   return (
     <div className="bg-gray-400 w-full h-full flex flex-col p-2 ">
-      <h1 className="text-4xl font-semibold drop-shadow-2xl text-black">
+      <h1 className="mt-6 md:text-[2.5rem] font-semibold drop-shadow-2xl text-black">
         Dashboard
       </h1>
       <form

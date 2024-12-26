@@ -19,7 +19,7 @@ export const fetchWeatherData = async (
       timezone: "auto",
     };
 
-    // caching the data
+    // caching the data //TODO: Need to use some package here (preferably: axios-cache-adopter)
     const key = `${latitude}-${longitude}-${startDate}-${endDate}-`;
 
     if (cache[key]) {
