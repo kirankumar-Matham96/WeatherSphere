@@ -12,8 +12,8 @@ const Page = async ({ searchParams }) => {
   );
 
   return (
-    <div className="flex flex-col items-center p-2">
-      <h1>Temperature Details</h1>
+    <div className="flex flex-col items-center px-5 py-8">
+      <h1 className="text-4xl font-semibold">Temperature Details</h1>
       <Chart weatherData={weatherData} />
       <Table weatherData={weatherData} />
     </div>
