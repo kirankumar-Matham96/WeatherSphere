@@ -21,7 +21,6 @@ export const fetchWeatherData = async (
       "https://archive-api.open-meteo.com/v1/archive",
       { params }
     );
-    // return resp.data;
     const data = resp.data.daily.time.map((time, index) => {
       return {
         time,
@@ -40,5 +39,6 @@ export const fetchWeatherData = async (
     return report;
   } catch (error) {
     console.log(error);
+    return error.message;
   }
 };

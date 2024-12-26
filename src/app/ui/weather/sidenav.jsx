@@ -38,23 +38,27 @@ const Sidenav = () => {
         <input
           className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
           type="text"
+          required
           value={latitude}
           onChange={(e) => setLatitude(e.target.value)}
         />
         <input
           className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          required
           type="text"
           value={longitude}
           onChange={(e) => setLongitude(e.target.value)}
         />
         <input
           className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          required
           type="text"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         />
         <input
           className="rounded-md bg-gray-50 text-gray-800 outline-none p-2 my-2"
+          required
           type="text"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
