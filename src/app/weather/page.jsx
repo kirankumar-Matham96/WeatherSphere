@@ -1,34 +1,17 @@
-import { fetchWeatherData } from "@/app/lib/weather/route";
-import Chart from "@/app/ui/weather/chart";
-import Table from "../ui/weather/table";
+import WeatherPage from "@/app/weather/weatherPage";
+import { Suspense } from "react";
+import { ClipLoader } from "react-spinners";
 
-const Page = async ({ searchParams }) => {
-  try {
-    const { latitude, longitude, start_date, end_date } = await searchParams;
-    const weatherData = await fetchWeatherData(
-      latitude || 52.52,
-      longitude || 13.41,
-      start_date || "2023-11-09",
-      end_date || "2023-12-09"
-    );
-
-    return (
-      <div className="flex flex-col items-center px-5 py-8">
-        <h1 className="text-3xl font-semibold mb-3">Temperature Details</h1>
-        <Chart weatherData={weatherData} />
-        <Table weatherData={weatherData} />
+const Page = () => (
+  <Suspense
+    fallback={
+      <div className="flex justify-center items-center h-screen">
+        <ClipLoader color="#36d7b7" size={150} />
       </div>
-    );
-  } catch (error) {
-    return (
-      <div className="flex flex-col items-center px-5 py-8">
-        <h1 className="text-3xl font-semibold mb-3">Temperature Details</h1>
-        <div className="text-xl font-semibold">
-          <p>{error.message}</p>
-        </div>
-      </div>
-    );
-  }
-};
+    }
+  >
+    <WeatherPage />
+  </Suspense>
+);
 
 export default Page;
